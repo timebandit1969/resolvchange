@@ -5,7 +5,7 @@ Source code to recent linux purebasic x64 resolvement of DNS problems when linux
 This is to be used when you are using resolvconf (can't remember the name, it was buggy)
 or openresolv to retrieve the vpn server's DNS and add it to /etc/resolv.conf
 
-To use: start resolvchange (./coreyspot or build exe different name) 
+To use: start resolvchange (./resolvchange or build exe different name) 
 
 1. sudo su
 2. enter system password
@@ -13,13 +13,15 @@ To use: start resolvchange (./coreyspot or build exe different name)
 4. Start VPN
 5. immediately start resolvchange after. 
 for example:
-6. ./coreyspot or ./compiledprogramfilenameofresolvchange
+6. ./resolvchange or ./compiledprogramfilenameofresolvchange
 
 googlednsinstall just installs google public dns while your vpn is down (or maybe even still up)
 
 To get VPN started where linux broke /etc/resolv.conf
-compile googlednsinstall.pb to a filename and execute it with ./compiledorogramfilename
+compile googlednsinstall.pb to a filename and execute it with 
+./googlednsinstall or ./compiledgooglednsinstallprogramfilename
 start VPN
-immediately start resolvchange after. (./coreyspot or ./compiledresolvchangeprogramfilename)
+immediately start resolvchange after. 
+(./resolvchange or ./compiledresolvchangeprogramfilename)
 
-Cheers with beers!
+Cheers with Beers!

@@ -42,7 +42,15 @@ EnableGraphicalConsole(1)
 OpenConsole("Corey's PotSmoke Results of fixing computer problems")
 Print("Coreys Smokin Up systemd/dnsmasq/network-manager"+Chr(13)+Chr(10)+"fake DNS problem in linux work around V 2.0 for OpenVPN/IPSEC"+Chr(13)+Chr(10))
 Print("Current DNS backed up.....STart this program with proper DNS"+Chr(13)+Chr(10))
-Print("Press Ctrl-C to close console program here."+Chr(13)+Chr(10))
+Print("Current DNS setup is as follows:"+Chr(13)+Chr(10))
+
+ReadFile(3,"/etc/resolv.conf")
+Repeat
+  Print(ReadString(3)+Chr(13)+Chr(10))
+Until Eof(3)
+CloseFile(3)
+
+;Print("Press Ctrl-C to close console program here."+Chr(13)+Chr(10))
 Global a.s
 Global result.q
 Global tmes.l
@@ -52,9 +60,9 @@ CopyFile("/etc/resolv.conf","/etc/resolv.conf.cbak2")
 
 Repeat
   If Date()>result.q
-    result.q=Date()+33;'Random(49,33)
-     DeleteFile("/etc/resolv.conf.cbak")
-  CopyFile("/etc/resolv.conf","/etc/resolv.conf.cbak")
+    result.q=Date()+7;'Random(49,33)
+  ;   DeleteFile("/etc/resolv.conf.cbak")
+ ; CopyFile("/etc/resolv.conf","/etc/resolv.conf.cbak")
  ;  CopyFile("/etc/resolv.conf","/etc/resolv.conf.cbak2")
   ReadFile(0,"/etc/resolv.conf")
   If changed<>3
@@ -85,7 +93,7 @@ Repeat
  ; DeleteFile("/etc/resolv.conf")
   cnt2+1
  ; If cnt2>1
-      Print("Now this is fscreweed, trying other backup of DNS...."+Chr(13)+Chr(10))  
+  ;    Print("Now this is fscreweed, trying other backup of DNS...."+Chr(13)+Chr(10))  
          ; CopyFile("/etc/resolv.conf.cbak2","/etc/resolv.conf")
       dabit("/etc/resolv.conf.cbak2")
       
@@ -101,13 +109,20 @@ Repeat
         If changed=3
           changed=0
           Print("DNS seemingly back to normal...."+Chr(13)+Chr(10))
+          Print("Current DNS setup is as follows:"+Chr(13)+Chr(10))
+
+ReadFile(3,"/etc/resolv.conf")
+Repeat
+  Print(ReadString(3)+Chr(13)+Chr(10))
+Until Eof(3)
+CloseFile(3)
         EndIf
         
       cnt2=0
-        CopyFile("/etc/resolv.conf","/etc/resolv.conf.cbak")
-        Print("Backing up current DNS ....."+Chr(13)+Chr(10)+"This is done each time Linux didn't bugger with DNS,"+Chr(13)+Chr(10)+"so normal DNS change can be made (OpenVPN/Ipsec off-ISP DNS, on-Resolvconf DNS)"+Chr(13)+Chr(10))        
+       ; CopyFile("/etc/resolv.conf","/etc/resolv.conf.cbak")
+       ; Print("Backing up current DNS ....."+Chr(13)+Chr(10)+"This is done each time Linux didn't bugger with DNS,"+Chr(13)+Chr(10)+"so normal DNS change can be made (OpenVPN/Ipsec off-ISP DNS, on-Resolvconf DNS)"+Chr(13)+Chr(10))        
         Print("Press Ctrl-C to close console program here."+Chr(13)+Chr(10))
-                Print("Caught Linux screwing up DNS and replenished it:"+Str(tmes.l)+" times..."+Chr(13)+Chr(10))
+                Print("We caught Linux screwing up DNS and fixed it "+Str(tmes.l)+" times..."+Chr(13)+Chr(10))
       EndIf
       cnt+1
       Print(Str(cnt)+Chr(13)+Chr(10))
@@ -118,7 +133,8 @@ EndIf
 ForEver
 ; IDE Options = PureBasic 5.62 (Linux - x64)
 ; ExecutableFormat = Console
-; CursorPosition = 29
+; CursorPosition = 111
+; FirstLine = 89
 ; Folding = -
 ; EnableXP
-; Executable = ../coreyspot
+; Executable = ../resolvchange

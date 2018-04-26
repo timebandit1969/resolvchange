@@ -6,4 +6,4 @@ CloseFile(0)
 ; IDE Options = PureBasic 5.62 (Linux - x64)
 ; CursorPosition = 3
 ; EnableXP
-; Executable = ../../testit
+; Executable = ../../googlednsinstall
